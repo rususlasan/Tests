@@ -1,7 +1,7 @@
-package com.shmelev.steps;
+package nut.cc.steps;
 
-import com.shmelev.page.Browsers;
-import com.shmelev.page.Page;
+import nut.cc.page.Browsers;
+import nut.cc.page.Page;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -35,7 +35,7 @@ public class SearchResultTest {
         page.pressSearchButton();
     }
 
-    @Then("^Header search snippet \"(\\d*)\" text equals \"(.*)\"$")
+    @Then("^Header search snippet \"(\\d*)\" text start with \"(.*)\"$")
     public void Header_Search_Text_Equals(String snippet, String header) {
         WebElement current = page.getSearchResult().get(Integer.parseInt(snippet) - 1);
 

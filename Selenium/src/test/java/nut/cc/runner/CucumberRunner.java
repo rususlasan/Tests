@@ -1,4 +1,4 @@
-package com.shmelev.runner;
+package nut.cc.runner;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;

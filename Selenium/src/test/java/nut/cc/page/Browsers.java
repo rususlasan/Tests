@@ -1,4 +1,4 @@
-package com.shmelev.page;
+package nut.cc.page;
 
 public enum Browsers {
     CHROME,

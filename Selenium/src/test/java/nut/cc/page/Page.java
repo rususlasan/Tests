@@ -1,4 +1,4 @@
-package com.shmelev.page;
+package nut.cc.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
