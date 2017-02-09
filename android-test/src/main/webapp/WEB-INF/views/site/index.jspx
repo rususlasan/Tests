@@ -1,0 +1,81 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:output doctype-root-element="html" doctype-system="about:legacy-compat" omit-xml-declaration="true"/>
+
+    <html>
+    <head>
+        <title>Тестирование</title>
+    </head>
+    <body>
+        <div>
+            <h1>Создание тест планов</h1>
+            <p>
+                В первую очередь необходимо создать тест-план, затем в него можно создавать
+                и добавлять тест-кейсы.
+            </p>
+            <form action="addtestplan" method="GET">
+                <button type="submit">Создать тест-план</button>
+            </form>
+            <h1> Тест-планы </h1>
+            <table border = "3">
+                <tr>
+                    <td><h3>ID</h3></td>
+                    <td><h3>Тест-кейсы(№: кейс)</h3></td>
+                </tr>
+                <c:forEach items="${testPlans}" var="tp">
+                    <tr>
+                        <td><c:out value="${tp.getId()}"/></td>
+                        <td>
+                            <c:forEach items="${tp.getTestCases()}" var="tcase">
+                                <c:out value="${tp.getTestCases().indexOf(tcase) + 1}: "/>
+                                <c:out value="${tcase.toString()}"/>
+                                <br/>
+                            </c:forEach>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+          <!-- *********************************************************************************** -->
+            <h2>Добавить тест-кейс в тест-план</h2>
+            <p>
+                Дробную часть вводить через запятую.
+            </p>
+            <form action="/addtestcase" method="POST">
+                <label>
+                    <textarea name="expression" placeholder="выражения для вычисления"><jsp:text/></textarea>
+                </label>
+                <label>
+                    <textarea name="expectedResult" placeholder="ожидаемый результат"><jsp:text/></textarea>
+                </label>
+                <label>
+                    <textarea name="testPlanID" placeholder="ID тест плана"><jsp:text/></textarea>
+                </label>
+                <br/>
+                <button type="submit">Добавить тест-кейс</button>
+            </form>
+        </div>
+        <!-- *********************************************************************************** -->
+        <div>
+            <h2>Выполнить тестирование</h2>
+            <p>
+                При вводе только номера тест-плана выполнится весь тест-план.
+                Для выполнения конкретного тест кейса необходимо ввести ID тест плана и номер тест-кейса в нем(из таблицы)
+            </p>
+            <form action="/runtest" method="POST">
+                <label>
+                    <textarea name="tpNumber" placeholder="ID тест плана"><jsp:text/></textarea>
+                </label>
+                <label>
+                    <textarea name="tcNumber" placeholder="номер тест кейса(или пусто)"><jsp:text/></textarea>
+                </label>
+                <br/>
+                <button type="submit">Начать</button>
+            </form>
+            <hr/>
+        </div>
+    <br/>
+    <br/>
+    </body>
+    </html>
+</jsp:root>
